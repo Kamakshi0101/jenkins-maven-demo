@@ -7,8 +7,11 @@ pipeline {
         maven 'Maven-3'
     }
     // Automatic build test
+    // triggers {
+    //     pollSCM('H/2 * * * *')
+    // }
     triggers {
-        pollSCM('H/2 * * * *')
+        githubPush()
     }
 
     stages {
