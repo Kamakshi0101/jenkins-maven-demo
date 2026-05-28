@@ -1,24 +1,19 @@
 pipeline {
     agent any
-
     tools {
         jdk 'JDK-17'
         maven 'Maven-3'
     }
-
     stages {
-
-        stage('Clone Code') {
+        stage('Test') {
             steps {
-                git branch: 'master',
-                url: 'https://github.com/kamakshi0101/jenkins-maven-demo.git'
+                bat 'mvn clean test'
             }
         }
-
-        stage('Maven Build') {
-            steps {
-                bat 'mvn clean package'
-            }
+    }
+    post {
+        always {
+            junit 'target/surefire-reports/*.xml'
         }
     }
 }
