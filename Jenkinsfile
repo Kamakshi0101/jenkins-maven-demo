@@ -1,3 +1,4 @@
+@Library('my-shared-library') _
 pipeline {
 
     agent any
@@ -26,7 +27,8 @@ pipeline {
 
         stage('Run Tests with JaCoCo') {
             steps {
-                bat 'mvn clean test'
+                // bat 'mvn clean test'
+                testPackage()
             }
         }
     }
@@ -35,16 +37,17 @@ pipeline {
 
         always {
 
-            junit 'target/surefire-reports/*.xml'
+            //junit 'target/surefire-reports/*.xml'
 
-            publishHTML([
-                reportDir: 'target/site/jacoco',
-                reportFiles: 'index.html',
-                reportName: 'JaCoCo Coverage Report',
-                keepAll: true,
-                alwaysLinkToLastBuild: true,
-                allowMissing: false
-            ])
+            // publishHTML([
+            //     reportDir: 'target/site/jacoco',
+            //     reportFiles: 'index.html',
+            //     reportName: 'JaCoCo Coverage Report',
+            //     keepAll: true,
+            //     alwaysLinkToLastBuild: true,
+            //     allowMissing: false
+            // ])
+            publishReports()
         }
     }
 }
