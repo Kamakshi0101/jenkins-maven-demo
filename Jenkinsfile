@@ -10,6 +10,7 @@ pipeline {
     // triggers {
     //     pollSCM('H/2 * * * *')
     // }
+    //githubPush()
     triggers {
         githubPush()
     }
