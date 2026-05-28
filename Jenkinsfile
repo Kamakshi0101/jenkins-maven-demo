@@ -6,6 +6,7 @@ pipeline {
         jdk 'JDK-17'
         maven 'Maven-3'
     }
+    // Automatic build test
     triggers {
         pollSCM('H/2 * * * *')
     }
